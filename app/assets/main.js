@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import Test from './js/components/Test.vue'
+import Memberships from './js/components/Memberships.vue'
 createApp({
     delimiters: ['${', '}'],
     data() {
@@ -8,6 +8,6 @@ createApp({
       }
     },
     components: {
-        'test': Test,
+        'Memberships': Memberships,
     }
   }).mount('#app')
