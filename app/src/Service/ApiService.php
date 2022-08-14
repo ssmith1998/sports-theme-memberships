@@ -8,7 +8,7 @@ class ApiService {
 
     public function __construct()
     {
-        $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.jokes.one']);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => 'http://sports-theme-docker-wordpress-1']);
     }
 
     public function makeGetRequest($url)
