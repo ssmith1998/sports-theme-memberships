@@ -8,24 +8,27 @@
 import MembershipItem from './MembershipItem.vue'
 export default {
     name: 'Memberships',
+    data(){
+        return {
+            memberships: []
+        }
+    },
     props: {
-        memberships: {
+        data: {
             type: Array,
-            default: [
-                {
-                    name: 'membership 1'
-                },
-                {
-                    name: 'membership 2'
-                },
-                {
-                    name: 'membership 3'
-                },
-            ]
+            default: []
         }
     },
     components: {
         'membership-item': MembershipItem
+    },
+    mounted() {
+        this.memberships = this.data.map(item => {
+            return {
+                membership_title: item.post_title,
+                membership_description: item.post_content,
+            }
+        }).reverse()
     }
 }
 </script>

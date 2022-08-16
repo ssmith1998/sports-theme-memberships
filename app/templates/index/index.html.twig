@@ -3,5 +3,5 @@
 {% block title %}Memberships{% endblock %}
 
 {% block body %}
-        <memberships></memberships>
+        <memberships :data="{{memberships|json_encode}}"></memberships>
 {% endblock %}

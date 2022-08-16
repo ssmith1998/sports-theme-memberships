@@ -1,6 +1,7 @@
 <template>
   <div class="membershipItem mx-auto p-5 mt-3 shadow shadow-sm">
-      <p>{{membership.name}}</p>
+      <p>{{membership.membership_title}}</p>
+      <p>{{membership.membership_description}}</p>
   </div>
 </template>
 

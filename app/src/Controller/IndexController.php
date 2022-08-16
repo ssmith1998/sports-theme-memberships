@@ -13,10 +13,10 @@ class IndexController extends BaseController
     public function index(ApiService $api): Response
     {
 
-        $response = $api->makeGetRequest('/wp-json/wpv/v1/bookings');
-        dd($response);
+        $response = $api->makeGetRequest('/wp-json/memberships/v1/memberships');
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
+            'memberships' => $response['posts']
         ]);
     }
 }
