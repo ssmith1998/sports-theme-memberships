@@ -1,13 +1,17 @@
 import { createApp } from "vue";
-import Memberships from './js/components/Memberships.vue'
-createApp({
+import { createPinia } from 'pinia';
+import Memberships from './js/components/Memberships.vue';
+import { mapState } from "pinia";
+import {useBasketStore} from './js/store/basket';
+const pinia = createPinia()
+const app = createApp({
     delimiters: ['${', '}'],
-    data() {
-      return {
-        count: 3000
-      }
+    computed: {
+      ...mapState(useBasketStore, ['itemsCount'])
     },
     components: {
         'Memberships': Memberships,
     }
-  }).mount('#app')
+  })
+  .use(pinia)
+  .mount('#app')
