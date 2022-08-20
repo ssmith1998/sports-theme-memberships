@@ -7,7 +7,7 @@ export const useBasketStore = defineStore('basket', {
     }),
     getters: {
       basketList: (state) => state.items,
-      itemsCount: (state) => state.items.length + 1,
+      itemsCount: (state) => state.items.length,
     },
     actions: {
       List(memberships) {
