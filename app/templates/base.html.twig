@@ -22,8 +22,6 @@
                 <div class="logo">
                     <p>{{app_name}}</p>
                 </div>
-                <basket @onopenbasket="onBasketOpen"></basket>
-                <basket-modal @closemodal="onCloseBasket" :modalopen="basketOpen"></basket-modal>
             </header>
             {% block body %}{% endblock %}
         </div>

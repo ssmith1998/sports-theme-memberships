@@ -1,10 +1,8 @@
 import { createApp } from "vue";
 import { createPinia } from 'pinia';
 import Memberships from './js/components/Memberships.vue';
-import Basket from './js/components/Basket.vue'
 import { mapState } from "pinia";
 import {useBasketStore} from './js/store/basket';
-import BasketModal from './js/components/BasketModal'
 const pinia = createPinia()
 const app = createApp({
     delimiters: ['${', '}'],
@@ -18,8 +16,6 @@ const app = createApp({
     },
     components: {
         'Memberships': Memberships,
-        'Basket': Basket,
-        'BasketModal': BasketModal,
     },
     methods: {
       onCloseBasket() {

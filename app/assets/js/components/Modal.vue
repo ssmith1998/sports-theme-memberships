@@ -1,37 +1,34 @@
 <template>
   <div :class="modalopen ? 'basketModal d-flex justify-content-center align-items-center basketModal--active' :'basketModal justify-content-center align-items-center'">
-      <div v-if="basketList.length" class="card basketModalInner h-75 w-75 p-4">
-          <div v-for="(item,index) in basketList" :key="index" class="item d-flex p-4 mt-3 justify-content-between align-items-center">
+      <div class="card basketModalInner h-75 w-75 p-4">
+          <div class="d-flex p-4 mt-3 justify-content-between align-items-center">
               <div class="basketItem__info">
-                <p class="text-dark">{{item.membership_title}}</p>
-                <p class="text-dark">{{item.membership_description}}</p>
+                <p class="text-dark">{{membership.membership_title}}</p>
+                <p class="text-dark">{{membership.membership_description}}</p>
               </div>
-            <i class="fas fa-minus-circle text-danger"></i>
           </div>
         <div class="checkoutBtn"><i class="fas fa-long-arrow-alt-right"></i></div>
       </div>
-      <div v-else class="card basketModalInner--empty h-50 w-50"> <p>Your basket is empty, add some items!</p> </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
-import {useBasketStore} from '../store/basket';
 export default {
-name: 'BasketModal',
+name: 'modal',
 props: {
     modalopen: {
         required: true,
         default: false,
-    }
+    },
+    membership: {
+        required: false,
+        default: {}
+    },
 },
 methods: {
     onRemoveItem() {
         
     }
-},
-computed: {
-    ...mapState(useBasketStore, ['basketList'])
 },
 mounted() {
     document.addEventListener('click', (event) => {
@@ -54,18 +51,12 @@ mounted() {
     display: none;
 }
 
+.basketModalInner{
+    position: relative;
+}
+
 .basketModal--active {
     display: flex;
-}
-
-.basketModalInner--empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.basketModalInner{
-    overflow: scroll;
 }
 
 .checkoutBtn{
@@ -77,9 +68,9 @@ mounted() {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 108px;
-    right: 137px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     cursor: pointer;
     i{
         font-size: 25px;
@@ -93,16 +84,5 @@ mounted() {
     i{
         font-size: 25px;
     }
-}
-
-::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 </style>

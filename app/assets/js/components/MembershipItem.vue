@@ -2,7 +2,7 @@
   <div class="membershipItem mx-auto p-5 mt-3 shadow shadow-sm">
       <p>{{membership.membership_title}}</p>
       <p>{{membership.membership_description}}</p>
-      <button class="btn btn-primary" @click="onAddToBasket">Add To Basket</button>
+      <button class="btn btn-primary" @click="onShowInfo">Show Info</button>
   </div>
 </template>
 
@@ -18,8 +18,8 @@ props: {
 },
 methods: {
     ...mapActions(useBasketStore, ['addItem']),
-    onAddToBasket(){
-        this.addItem(this.membership);
+    onShowInfo(){
+        this.$emit('showInfo', this.membership);
     },
 }
 }
