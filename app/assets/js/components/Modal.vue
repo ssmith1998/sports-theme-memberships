@@ -132,6 +132,7 @@ mounted() {
     height: 90px;
     padding: 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .priceItem input[type=radio]{
