@@ -21,6 +21,9 @@ methods: {
     onShowInfo(){
         this.$emit('showInfo', this.membership);
     },
+},
+mounted(){
+    console.log(this.membership.membership_prices);
 }
 }
 </script>

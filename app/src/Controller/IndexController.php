@@ -16,7 +16,7 @@ class IndexController extends BaseController
         $response = $api->makeGetRequest('/wp-json/memberships/v1/memberships');
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
-            'memberships' => $response['posts']
+            'memberships' => $response
         ]);
     }
 }

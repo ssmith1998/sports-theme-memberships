@@ -47,6 +47,7 @@ export default {
             return {
                 membership_title: item.post_title,
                 membership_description: item.post_content,
+                membership_prices: item.prices,
             }
         }).reverse()
         this.List(this.membershipsData);
