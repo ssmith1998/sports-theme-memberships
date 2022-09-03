@@ -12,8 +12,8 @@
               </div>
           <div v-if="membership.membership_prices" class="prices mt-5 d-flex justify-content-center ">
               <div class="priceItem mx-3" v-for="(price, index) in membership.membership_prices" :key="index" >
-                <input type="radio" :id="price.description" :name="price.description" :value="price.price" v-model="pricePicked">
-                <label :for="price.description" class="label"> {{price.description}}</label>
+                <input type="radio" class="price" @click="onActivePrice" :id="price.description" :name="price.description" :value="price.price" v-model="pricePicked">
+                <label :for="price.description" :class="index === 0 ? 'label activePrice' : 'label'"> {{price.description}}</label>
               </div>
 
           </div>
@@ -36,6 +36,13 @@ props: {
         default: {}
     },
 },
+ watch: {
+    modalopen(modalOpenNewVal) {
+      if (modalOpenNewVal === true) {
+        this.pricePicked = this.membership.membership_prices[0];
+      }
+    }
+  },
 data(){
     return {
         pricePicked: ''
@@ -44,6 +51,18 @@ data(){
 methods: {
     onRemoveItem() {
         
+    },
+    onActivePrice(e){
+        const radios = document.getElementsByClassName('price');
+        for (let i = 0; i < radios.length; i++) {
+            if(radios[i].nextSibling.classList.contains('activePrice')){
+                radios[i].nextSibling.classList.remove('activePrice');
+            }else if(e.target === radios[i] && !radios[i].nextSibling.classList.contains('activePrice')){
+                radios[i].nextSibling.classList.add('activePrice');
+            }
+            
+            
+        }
     }
 },
 mounted() {
@@ -51,8 +70,9 @@ mounted() {
         if(event.target.classList.contains('basketModal--active')){
             this.$emit('closemodal');
         }
-    })
-}
+    });
+
+},
 }
 </script>
 
@@ -138,9 +158,13 @@ mounted() {
 .priceItem input[type=radio]{
     display: none;
 }
-
-.priceItem input[type=radio]:checked + .label{
+.activePrice {
     background: green;
     color:#ffffff;
 }
+
+// .priceItem input[type=radio]:checked + .label{
+//     background: green;
+//     color:#ffffff;
+// }
 </style>
