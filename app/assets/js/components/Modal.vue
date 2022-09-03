@@ -18,7 +18,9 @@
 
           </div>
           </div>
-        <div class="checkoutBtn"><i class="fas fa-long-arrow-alt-right"></i></div>
+          <a :href="`/membership/${membership.membership_id}`">
+            <div class="checkoutBtn"><i class="fas fa-long-arrow-alt-right"></i></div>
+          </a>
       </div>
   </div>
 </template>
@@ -55,7 +57,7 @@ methods: {
     onActivePrice(e){
         const radios = document.getElementsByClassName('price');
         for (let i = 0; i < radios.length; i++) {
-            if(radios[i].nextSibling.classList.contains('activePrice')){
+            if(radios[i].nextSibling.classList.contains('activePrice') && e.target !== radios[i]){
                 radios[i].nextSibling.classList.remove('activePrice');
             }else if(e.target === radios[i] && !radios[i].nextSibling.classList.contains('activePrice')){
                 radios[i].nextSibling.classList.add('activePrice');
@@ -162,9 +164,4 @@ mounted() {
     background: green;
     color:#ffffff;
 }
-
-// .priceItem input[type=radio]:checked + .label{
-//     background: green;
-//     color:#ffffff;
-// }
 </style>

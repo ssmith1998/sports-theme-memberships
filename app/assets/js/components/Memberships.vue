@@ -46,11 +46,14 @@ export default {
         this.membershipsData = this.data.map(item => {
             return {
                 membership_title: item.post_title,
+                membership_id: item.post_id,
                 membership_description: item.post_content,
                 membership_prices: item.prices,
             }
         }).reverse()
         this.List(this.membershipsData);
+        console.log('LIST', this.membershipsList);
+        
 
     }
 }
