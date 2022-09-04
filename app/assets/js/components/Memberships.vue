@@ -43,7 +43,11 @@ export default {
         'modal': Modal
     },
     mounted() {
-        this.membershipsData = this.data.map(item => {
+        this.membershipsData = this.data
+        .filter(item => {
+            return item.prices.length
+        })
+        .map(item => {
             return {
                 membership_title: item.post_title,
                 membership_id: item.post_id,

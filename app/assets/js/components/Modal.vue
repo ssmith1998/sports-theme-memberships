@@ -12,13 +12,13 @@
               </div>
           <div v-if="membership.membership_prices" class="prices mt-5 d-flex justify-content-center ">
               <div class="priceItem mx-3" v-for="(price, index) in membership.membership_prices" :key="index" >
-                <input type="radio" class="price" @click="onActivePrice" :id="price.description" :name="price.description" :value="price.price" v-model="pricePicked">
+                <input type="radio" class="price" @click="onActivePrice" :id="price.description" :name="price.description" :value="price" v-model="pricePicked">
                 <label :for="price.description" :class="index === 0 ? 'label activePrice' : 'label'"> {{price.description}}</label>
               </div>
 
           </div>
           </div>
-          <a :href="`/membership/${membership.membership_id}`">
+          <a :href="`/membership/${membership.membership_id}?option=${pricePicked.price}`">
             <div class="checkoutBtn"><i class="fas fa-long-arrow-alt-right"></i></div>
           </a>
       </div>
@@ -40,8 +40,9 @@ props: {
 },
  watch: {
     modalopen(modalOpenNewVal) {
-      if (modalOpenNewVal === true) {
+      if (modalOpenNewVal === true && this.membership.membership_prices.length) {
         this.pricePicked = this.membership.membership_prices[0];
+        console.log(this.pricePicked);
       }
     }
   },
@@ -61,6 +62,7 @@ methods: {
                 radios[i].nextSibling.classList.remove('activePrice');
             }else if(e.target === radios[i] && !radios[i].nextSibling.classList.contains('activePrice')){
                 radios[i].nextSibling.classList.add('activePrice');
+                console.log(this.pricePicked);
             }
             
             

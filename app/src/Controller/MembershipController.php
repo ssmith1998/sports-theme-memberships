@@ -12,9 +12,8 @@ class MembershipController extends BaseController
     public function index($id, ApiService $api): Response
     {
         $membership = $api->makeGetRequest("/wp-json/memberships/v1/membership/$id");
-        dd($membership);
         return $this->render('membership/index.html.twig', [
-            'controller_name' => 'MembershipController',
+            'membership' => $membership
         ]);
     }
 }
